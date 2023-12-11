@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #weather-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+
+    <form id="weather-form" onsubmit="getWeather(); return false;">
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+" title="Please enter a valid city name (letters and spaces only)">
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div id="weather-info"></div>
+
+    <script>
+        function getWeather() {
+            // Get user input
+            var cityInput = document.getElementById('city');
+            var city = cityInput.value;
+
+            // Display weather information
+            var weatherInfo = document.getElementById('weather-info');
+            weatherInfo.innerHTML = ''; // Clear previous content
+
+            if (city.trim() !== '') {
+                // Simulate fetching data from a JSON file
+                fetchWeatherFromJson(city);
+            } else {
+                // Display an error message if the city field is empty
+                weatherInfo.innerHTML = '<p style="color: red;">Please enter a city name.</p>';
+            }
+        }
+
+        function fetchWeatherFromJson(city) {
+            // Simulate fetching data from a JSON file
+            // Replace the following JSON content with your actual data
+            var jsonData = {
+                temperature: 25,
+                description: "Sunny"
+            };
+
+            // Display the weather information
+            var weatherInfo = document.getElementById('weather-info');
+            weatherInfo.innerHTML = `<p>Weather information for ${city}:</p>`;
+            weatherInfo.innerHTML += `<p>Temperature: ${jsonData.temperature}°C</p>`;
+            weatherInfo.innerHTML += `<p>Description: ${jsonData.description}</p>`;
+        }
+    </script>
+
+</body>
+</html>
